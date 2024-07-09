@@ -1,0 +1,23 @@
+CREATE TABLE Clients (
+	ClientID SERIAL PRIMARY KEY,
+	Nom VARCHAR(50) NOT NULL,
+	Prenom VARCHAR(50) NOT NULL,
+	Email VARCHAR(50) NOT NULL,
+	DateNaissance DATE,
+	Adresse VARCHAR(255)
+	
+);
+
+CREATE TABLE Abonnements (
+	AbonnementID  SERIAL PRIMARY KEY,
+	ClientID INT NOT NULL,
+	TypeAbonnement  VARCHAR(50) NOT NULL,
+	DateDebut  DATE NOT NULL,
+	DateFin  DATE,
+	Prix  DECIMAL(10, 2),
+	CONSTRAINT fk_client
+		FOREIGN KEY(ClientID)
+		REFERENCES Clients(ClientID)
+		ON DELETE CASCADE
+	
+);
